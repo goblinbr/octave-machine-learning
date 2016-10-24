@@ -16,9 +16,20 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
+    
+    ho = X * theta;
+    HYT = (ho - y)';
+    
+    % todo: utilizar matriz e vetor para a logica abaixo
+    
+    for j=1:length(theta)
+      sumHYX = HYT * X(:,j);
+      theta(j) = theta(j) - ( (alpha/m) * sumHYX );
+    end
+    
+    
 
-
-
+    % theta = (alpha/m) .* sum( (ho - y) *  );
 
 
 
