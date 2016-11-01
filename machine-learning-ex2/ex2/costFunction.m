@@ -20,12 +20,18 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% compute cost
 
+hipot = sigmoid(X * theta);
 
+hiPos = -y' * log(hipot);
+hiNeg = (1-y)' * log(1 - hipot);
 
+J = (hiPos - hiNeg) / m;
 
+% compute grad
 
-
+grad = ((hipot - y)' * X)/m;
 
 % =============================================================
 
