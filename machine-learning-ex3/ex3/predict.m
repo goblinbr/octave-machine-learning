@@ -22,11 +22,14 @@ p = zeros(size(X, 1), 1);
 %
 
 
+X = [ones(m, 1) X];
 
+Layer1 = X * Theta1';
+Layer1 = [ones(m, 1) Layer1];
 
+Layer2 = Layer1 * Theta2';
 
-
-
+[a p] = max(Layer2, [], 2);
 
 
 % =========================================================================
