@@ -62,8 +62,21 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+A1 = [ones(m, 1) X];
 
-
+sm = 0
+%for k = 1:num_labels
+  %ty = y == k;
+  
+  A2 = Theta1 * A1';
+  
+  A2 = [ones(1,m) ; sigmoid(A2)];
+  
+  Ho = sigmoid(Theta2 * A2);
+  
+  disp(Ho);
+  
+%end;
 
 
 
