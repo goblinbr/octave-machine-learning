@@ -62,9 +62,12 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+disp(size(Theta1));
+disp(size(Theta2));
+
 A1 = [ones(m, 1) X];
-A2 = Theta1 * A1';
-A2 = [ones(1,m) ; sigmoid(A2)];
+Z2 = Theta1 * A1';
+A2 = [ones(1,m) ; sigmoid(Z2)];
 Ho = sigmoid(Theta2 * A2);
 
 sm = 0;
@@ -87,8 +90,32 @@ reg = lamb2m * ( sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)) );
 
 J += reg;
 
+% Backpropagation
+
+for k = 1:num_labels
+  ty = y == k;
+  delta_3k = Ho(k) - ty';
+  
+  %z = Theta1 * x
+  Z2k = Z2(k,:);
+  
+  %delta_2k = Theta2' * delta_3k .* sigmoidGradient(Z2);
+end;
+
+% T2 = 25 x 401
+% T1 = 10 x 26
+% Ho = 10 x 5000
+% y = 5000 x 1
+% delta_3k = 1 x 5000
+% Z2 = 10 x 5000
+% Z2k = 1 x 5000
 
 
+%disp(delta_3);
+
+%for t = 1:m
+%  for 
+%end;
 
 
 
