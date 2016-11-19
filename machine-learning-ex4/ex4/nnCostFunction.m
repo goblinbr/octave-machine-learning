@@ -63,20 +63,24 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 A1 = [ones(m, 1) X];
+A2 = Theta1 * A1';
+A2 = [ones(1,m) ; sigmoid(A2)];
+Ho = sigmoid(Theta2 * A2);
 
-sm = 0
-%for k = 1:num_labels
-  %ty = y == k;
+sm = 0;
+for k = 1:num_labels
+  ty = y == k;
   
-  A2 = Theta1 * A1';
+  Hok = Ho(k,:);
   
-  A2 = [ones(1,m) ; sigmoid(A2)];
+  hokPos = log(Hok) * -ty;
+  hokNeg = log(1 - Hok) * (1-ty);
   
-  Ho = sigmoid(Theta2 * A2);
-  
-  disp(Ho);
-  
-%end;
+  sm += hokPos - hokNeg;
+end;
+
+J = sm / m;
+
 
 
 
