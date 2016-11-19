@@ -81,15 +81,11 @@ end;
 
 J = sm / m;
 
+% Regularization
+lamb2m = lambda/(2*m);
+reg = lamb2m * ( sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)) );
 
-
-
-
-
-
-
-
-
+J += reg;
 
 
 
