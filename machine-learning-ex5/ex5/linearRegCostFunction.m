@@ -22,11 +22,18 @@ grad = zeros(size(theta));
 
 
 
+% X = 12 x 2
+% y = 12 x 1
+% theta = 2 x 1
 
+ho = X * theta;
+dif = ho - y;
+m2 = 2 * m;
 
+J = (dif' * dif) / m2;
+reg = sum(theta(2:end) .^ 2) * lambda / m2;
 
-
-
+J += reg;
 
 
 
