@@ -26,20 +26,14 @@ grad = zeros(size(theta));
 % y = 12 x 1
 % theta = 2 x 1
 
+thetareg = [0; theta(2:end)];
+
 ho = X * theta;
 dif = ho - y;
 m2 = 2 * m;
 
-J = (dif' * dif) / m2;
-reg = sum(theta(2:end) .^ 2) * lambda / m2;
-
-J += reg;
-
-grad = sum(X .* dif) ./ m;
-if( length(grad) > 1 )
-  gradReg = theta(2:end) .* lambda ./ m;
-  grad = [grad(1) grad(2:end) + gradReg'];
-endif
+J = ((dif' * dif) / m2) + (sum(thetareg .^ 2) * lambda / m2);
+grad = ((X' * dif) ./ m) + (thetareg .* lambda ./ m);
 
 
 % =========================================================================
