@@ -35,6 +35,11 @@ reg = sum(theta(2:end) .^ 2) * lambda / m2;
 
 J += reg;
 
+grad = sum(X .* dif) ./ m;
+if( length(grad) > 1 )
+  gradReg = theta(2:end) .* lambda ./ m;
+  grad = [grad(1) grad(2:end) + gradReg'];
+endif
 
 
 % =========================================================================
