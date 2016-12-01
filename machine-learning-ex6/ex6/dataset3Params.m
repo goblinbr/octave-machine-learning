@@ -24,7 +24,28 @@ sigma = 0.3;
 %
 
 
+tests = [0.01:0.03:0.09 0.1:0.3:0.9 1:3:9 10:30:100];
+minError = 99999999999999;
 
+for ci = tests
+  for si = tests
+    model = svmTrain(X, y, ci, @(x1, x2) gaussianKernel(x1, x2, si)); 
+    predictions = svmPredict(model, Xval);
+    error = mean(double(predictions ~= yval));
+    if error < minError
+      minError = error;
+      C = ci;
+      sigma = si;
+    endif;
+  end;
+end;
+
+%model = svmTrain(X, Y, C, kernelFunction, tol, max_passes);
+
+%model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
+
+%predictions = svmPredict(model, Xval);
+%mean(double(predictions ~= yval));
 
 
 
