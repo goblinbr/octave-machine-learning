@@ -40,14 +40,6 @@ for ci = tests
   end;
 end;
 
-%model = svmTrain(X, Y, C, kernelFunction, tol, max_passes);
-
-%model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
-
-%predictions = svmPredict(model, Xval);
-%mean(double(predictions ~= yval));
-
-
 
 
 % =========================================================================
