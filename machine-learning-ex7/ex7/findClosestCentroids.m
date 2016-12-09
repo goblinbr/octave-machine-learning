@@ -21,7 +21,25 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+m = size(X, 1);
 
+disp(m);
+
+for i=1:m
+  minK = 0;
+  minCost = 0;
+  x = X(i,:);
+  for j=1:K
+    mu = centroids(j,:);
+    dif = x - mu;
+    cost = sqrt(sum(dif .* dif)) ^ 2;
+    if cost < minCost || minCost == 0
+      minK = j;
+      minCost = cost;
+    endif;
+  end;
+  idx(i) = minK;
+end;
 
 
 
