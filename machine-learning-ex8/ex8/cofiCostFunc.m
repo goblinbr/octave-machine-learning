@@ -52,11 +52,11 @@ rx = hl * sum(sum(X .^ 2));
 J += rt + rx;
 
 for i=1:num_movies
-  X_grad(i,:) = sum(E(i,:)' .* Theta);
+  X_grad(i,:) = sum(E(i,:)' .* Theta) + lambda .* X(i,:);
 end;
 
 for j=1:num_users
-  Theta_grad(j,:) = sum(E(:,j) .* X);
+  Theta_grad(j,:) = sum(E(:,j) .* X) + lambda .* Theta(j,:);
 end;
 
 % =============================================================
