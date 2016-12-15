@@ -44,6 +44,13 @@ Theta_grad = zeros(size(Theta));
 E = (X * Theta' - Y) .* R;
 J = sum(sum(E .^ 2)) / 2;
 
+hl = lambda / 2;
+
+rt = hl * sum(sum(Theta .^ 2));
+rx = hl * sum(sum(X .^ 2));
+
+J += rt + rx;
+
 for i=1:num_movies
   X_grad(i,:) = sum(E(i,:)' .* Theta);
 end;
